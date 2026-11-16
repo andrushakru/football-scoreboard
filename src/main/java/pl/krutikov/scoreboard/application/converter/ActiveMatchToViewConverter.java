@@ -11,8 +11,8 @@ public final class ActiveMatchToViewConverter implements Converter<ActiveMatch, 
 
         return MatchView.builder()
                 .matchId(source.getId().value())
-                .homeTeam(source.getHomeTeam().getCountry().getName())
-                .awayTeam(source.getAwayTeam().getCountry().getName())
+                .homeTeam(source.getHomeTeam().name())
+                .awayTeam(source.getAwayTeam().name())
                 .homeScore(score.home())
                 .awayScore(score.away())
                 .startedAt(source.getStartedAt())

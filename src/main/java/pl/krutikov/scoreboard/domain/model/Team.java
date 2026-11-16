@@ -1,14 +1,12 @@
 package pl.krutikov.scoreboard.domain.model;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
 import pl.krutikov.scoreboard.exception.ErrorCodes;
 import pl.krutikov.scoreboard.exception.ScoreboardException;
 
 @ToString
-@Getter
 @EqualsAndHashCode
 public final class Team {
 
@@ -22,6 +20,10 @@ public final class Team {
         return Country.find(name)
                 .map(Team::new)
                 .orElseThrow(() -> new ScoreboardException(ErrorCodes.UNSUPPORTED_TEAM, name));
+    }
+
+    public String name() {
+        return country.getName();
     }
 
 }
