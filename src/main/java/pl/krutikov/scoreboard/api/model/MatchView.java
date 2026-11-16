@@ -11,5 +11,6 @@ public record MatchView(UUID matchId,
                         String awayTeam,
                         int homeScore,
                         int awayScore,
-                        Instant startedAt) {
+                        Instant startedAt,
+                        Instant finishedAt) {
 }

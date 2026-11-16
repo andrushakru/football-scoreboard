@@ -3,6 +3,7 @@ package pl.krutikov.scoreboard.domain.model;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -11,7 +12,7 @@ import java.util.stream.Stream;
 
 @Getter
 @RequiredArgsConstructor
-public enum Teams {
+public enum Country {
 
     AFGHANISTAN("Afghanistan"),
     ALBANIA("Albania"),
@@ -263,20 +264,20 @@ public enum Teams {
     ZIMBABWE("Zimbabwe"),
     ALAND_ISLANDS("Åland Islands");
 
-    private static final Map<String, Teams> BY_NAME_MAP = Stream.of(values())
+    private static final Map<String, Country> BY_NAME_MAP = Stream.of(values())
             .collect(
                     Collectors.toUnmodifiableMap(
-                            team -> team.getName().toUpperCase(),
+                            country -> country.getName().toUpperCase(Locale.ROOT),
                             Function.identity()
                     )
             );
 
     private final String name;
 
-    public static Optional<Teams> find(String name) {
+    public static Optional<Country> find(String name) {
         return Optional.ofNullable(name)
                 .map(String::strip)
-                .map(String::toUpperCase)
+                .map(value -> value.toUpperCase(Locale.ROOT))
                 .map(BY_NAME_MAP::get);
     }
 

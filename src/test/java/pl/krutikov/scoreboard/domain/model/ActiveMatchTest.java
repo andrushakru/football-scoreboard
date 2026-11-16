@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class MatchTest {
+class ActiveMatchTest {
 
     @ParameterizedTest
     @MethodSource("identicalTeams")
@@ -55,8 +55,8 @@ class MatchTest {
         );
     }
 
-    private static Match match(String home, String away) {
-        return new Match(
+    private static ActiveMatch match(String home, String away) {
+        return new ActiveMatch(
                 new MatchId(UUID.randomUUID()),
                 Team.of(home),
                 Team.of(away)

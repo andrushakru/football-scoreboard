@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.krutikov.scoreboard.domain.model.Match;
+import pl.krutikov.scoreboard.domain.model.ActiveMatch;
 import pl.krutikov.scoreboard.domain.model.MatchId;
 import pl.krutikov.scoreboard.domain.model.Team;
 import pl.krutikov.scoreboard.exception.ErrorCodes;
@@ -27,8 +27,8 @@ class SimpleActiveMatchRepositoryTest {
     void add_rejectsDuplicates() {
         // Given
         final var id = new MatchId(UUID.randomUUID());
-        final var existing = new Match(id, Team.of("Mexico"), Team.of("Canada"));
-        final var duplicate = new Match(id, Team.of("Brazil"), Team.of("France"));
+        final var existing = new ActiveMatch(id, Team.of("Mexico"), Team.of("Canada"));
+        final var duplicate = new ActiveMatch(id, Team.of("Brazil"), Team.of("France"));
 
         repository.add(existing);
 

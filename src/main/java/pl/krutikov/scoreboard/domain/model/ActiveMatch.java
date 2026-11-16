@@ -12,7 +12,7 @@ import java.time.Instant;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Match {
+public final class ActiveMatch {
 
     private final MatchId id;
     private final Team homeTeam;
@@ -20,7 +20,7 @@ public final class Match {
     private final Instant startedAt;
     private volatile Score score;
 
-    public Match(@NonNull MatchId id, @NonNull Team homeTeam, @NonNull Team awayTeam) {
+    public ActiveMatch(@NonNull MatchId id, @NonNull Team homeTeam, @NonNull Team awayTeam) {
         if (homeTeam.equals(awayTeam)) {
             throw new ScoreboardException(ErrorCodes.SAME_TEAM, homeTeam);
         }
@@ -32,20 +32,20 @@ public final class Match {
         this.score = new Score(0, 0);
     }
 
-    public Match updateScore(@NonNull Score score) {
+    public ActiveMatch updateScore(@NonNull Score score) {
         this.score = score;
         return this;
     }
 
-    public boolean conflicts(@NonNull Match other) {
+    public boolean conflicts(@NonNull ActiveMatch other) {
         return this.homeTeam.equals(other.homeTeam)
                 || this.homeTeam.equals(other.awayTeam)
                 || this.awayTeam.equals(other.homeTeam)
                 || this.awayTeam.equals(other.awayTeam);
     }
 
-    public Match copy() {
-        return new Match(id, homeTeam, awayTeam, startedAt, score);
+    public ActiveMatch copy() {
+        return new ActiveMatch(id, homeTeam, awayTeam, startedAt, score);
     }
 
 }

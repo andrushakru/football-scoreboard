@@ -10,6 +10,7 @@ public enum ErrorCodes {
     TEAM_ALREADY_PLAYING("At least one team already has an active match: %s, %s"),
     SAME_TEAM("A team cannot play against itself: %s"),
     UNSUPPORTED_TEAM("Unsupported team: %s"),
+    INVALID_HISTORY_LIMIT("History limit must be greater than 0: limit=%s"),
     INVALID_SCORE("Scores must be between 0 and %s: home=%s, away=%s");
 
     private final String template;
